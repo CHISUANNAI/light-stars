@@ -27,7 +27,8 @@ body {
 
 /* 去除列表默认样式 */
 ul,
-ol {
+ol,
+li {
   list-style: none;
 }
 
