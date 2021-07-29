@@ -1,10 +1,28 @@
 .container{
     width: 1240px;
-    margin: 0px auto;
+    margin: 0 auto;
 }
-.container-list{
-    width: 1240px;
-    margin: 0 auto  50px ;
+/* post-header */
+.post-shortcut{
+    height: 52px;
+    background-color: #197551;
+
+}
+.post-shortcut .container{
+    height: 52px;
+}
+.post-shortcut ul li{
+    float: left;
+    line-height: 52px;
+    color: #fed03c;
+}
+.post-shortcut ul li a{
+    margin: 0 16px;
+    color: #fed03c;
+    font-size: 14px;
+}
+.post-shortcut li:last-child a{
+    margin-right: 0;
 }
 /* post-nav */
 .post-nav{
@@ -14,12 +32,12 @@
     width: 1000px;
 }
 /* logo部分 */
-.post-nav .p-logo{
+.post-nav .logo{
     width: 70px;
     height: 70px;
     margin-left: 25px;
 }
-.post-nav .p-logo a{
+.post-nav .logo a{
     display: block;
     height: 70px;
     background: url('../images/post-logo.png');
@@ -105,10 +123,7 @@ padding-bottom: 7px;
 .post-content .content-list{
     height: 405px;
 }
-/* 列表*/
-.post-content{
-    margin-bottom: 100px;
-}
+/* 新鲜好物 列表*/
 .post-content .content-list li{
     height: 30px;
     margin: 0px 50px 0px;

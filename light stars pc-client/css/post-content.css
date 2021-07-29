@@ -2,11 +2,32 @@
     width: 1240px;
     margin: 0 auto;
 }
+/* post-header */
+.post-shortcut{
+    height: 52px;
+    background-color: #197551;
+
+}
+.post-shortcut .container{
+    height: 52px;
+}
+.post-shortcut ul li{
+    float: left;
+    line-height: 52px;
+    color: #fed03c;
+}
+.post-shortcut ul li a{
+    margin: 0 16px;
+    color: #fed03c;
+    font-size: 14px;
+}
+.post-shortcut li:last-child a{
+    margin-right: 0;
+}
 /* content-nav */
 .content-nav{
     height: 52px;
     text-align: center;
-    border-top: 1px solid white;
 }
 
 .content-nav .content-class{
@@ -209,7 +230,7 @@
     background: url('../images/like.png') 0px -4418px;
     zoom: 0.068;
 }
-/* 帖子回复 */
+/* 帖子发布 */
 .post-release
 {
     height: 600px;
