@@ -1,0 +1,248 @@
+.container{
+    width: 1240px;
+    margin: 0 auto;
+}
+/* content-nav */
+.content-nav{
+    height: 52px;
+    text-align: center;
+    border-top: 1px solid white;
+}
+
+.content-nav .content-class{
+    display: inline-block;
+    height: 52px;
+    width: 200px;
+    line-height: 52px;
+    font-size: 30px;
+    border-right: 3px solid gray;
+    box-sizing: border-box;
+}
+.content-nav .theme{
+    line-height: 52px;
+    display: inline-block;
+    height: 52px;
+    width: 200px;
+    margin-left: 20px;
+}
+/* 楼主栏 */
+.content-onwer{
+    height: 600px;
+    position: relative;
+    border: 3px solid gray;
+}
+.content-onwer .owner-info{
+    width: 300px;
+    height: 600px;
+    box-sizing: border-box;
+    border-right: 3px solid gray;
+}
+.content-onwer .owner-info .ava{
+    display: inline-block;
+    width: 150px;
+    height: 150px;
+    line-height: 150px;
+    margin-top: 75px;
+    margin-left: 10px;
+    border-radius: 50%;
+    background: url(../uploads/ava.jpg);
+    background-size: 100% 100%;
+}
+.content-onwer .owner-info .nic{
+    display: inline-block;
+    position: absolute;
+    top: 100px;
+    left: 175px;
+    font-size: 20px;
+}
+.content-onwer .owner-info .floor{
+    display: inline-block;
+    position: absolute;
+    top: 130px;
+    left: 175px;
+    font-size: 16px;
+    color: grey;
+}
+.content-onwer .owner-info .time{
+    display: inline-block;
+    position: absolute;
+    top: 155px;
+    left: 175px;
+    font-size: 16px;
+    color: grey;
+}
+.content-onwer .content-detail{
+    width: 940px;
+    height: 600px;
+    padding: 50px;
+    box-sizing: border-box;
+}
+/* 其他楼栏 */
+.content-other{
+    height: 600px;
+    position: relative;
+    border: 3px solid gray;
+    border-top: 0px;
+}
+.content-other .other-info{
+    width: 300px;
+    height: 600px;
+    box-sizing: border-box;
+    border-right: 3px solid gray;
+}
+.content-other .other-info .ava{
+    display: inline-block;
+    width: 150px;
+    height: 150px;
+    line-height: 150px;
+    margin-top: 75px;
+    margin-left: 10px;
+    border-radius: 50%;
+    background: url(../uploads/lyf.jpg);
+    background-size: 100% 100%;
+}
+.content-other .other-info .nic{
+    display: inline-block;
+    position: absolute;
+    top: 100px;
+    left: 175px;
+    font-size: 20px;
+}
+.content-other .other-info .floor{
+    display: inline-block;
+    position: absolute;
+    top: 130px;
+    left: 175px;
+    font-size: 16px;
+    color: grey;
+}
+.content-other .other-info .time{
+    display: inline-block;
+    position: absolute;
+    top: 155px;
+    left: 175px;
+    font-size: 16px;
+    color: grey;
+}
+.content-other .content-detail{
+    width: 940px;
+    height: 400px;
+    padding: 50px;
+    box-sizing: border-box;
+}
+.content-other .action{
+    width: 940px;
+    height: 50px;
+    box-sizing: border-box;
+}
+.content-other .action .like,.ref-bot{
+    display: inline-block;
+    box-sizing: border-box;
+    height: 50px;
+    width: 150px;
+}
+.content-other .action .like span{
+    display: inline-block;
+    line-height: 50px;
+    margin-left: 1em;
+    box-sizing: border-box;
+}
+.content-other .action .ref-bot span{
+    display: inline-block;
+    line-height: 50px;
+    margin-left: 1em;
+    box-sizing: border-box;
+}
+.content-other .action .like-pic{
+    height: 735px;
+    width: 735px;
+    background: url('../images/like.png') -2208px -734px;
+    zoom: 0.068;
+}
+.content-other .action .ref-bot-pic{
+    height: 735px;
+    width: 735px;
+    background: url('../images/like.png') -0px -734px;
+    zoom: 0.068;
+}
+.content-other .ref{
+    width: 940px;
+    height: 150px;
+    padding: 25px 50px 25px;
+    box-sizing: border-box;
+    border-top: 3px solid grey;
+}
+/* 侧边栏 */
+.button{
+    position: fixed;
+    width: 50px;
+    height: 200px;
+    right: 67px;
+    bottom: 200px;
+}
+.button .aside-ref,.aside-like,.aside-collect,.report{
+    width: 50px;
+    height: 50px;
+}
+.button .aside-ref{
+    display: block;
+    height: 735px;
+    width: 735px;
+    background: url('../images/like.png') -0px -734px;
+    zoom: 0.068;
+}
+.button .aside-like{
+    height: 735px;
+    width: 735px;
+    background: url('../images/like.png') -2208px -734px;
+    zoom: 0.068;
+}
+.button .aside-collect{
+    height: 735px;
+    width: 735px;
+    background: url('../images/like.png') -1472px -2945px;
+    zoom: 0.068;
+}
+.button .report{
+    height: 735px;
+    width: 735px;
+    background: url('../images/like.png') 0px -4418px;
+    zoom: 0.068;
+}
+/* 帖子回复 */
+.post-release
+{
+    height: 600px;
+    text-align: center;
+    position: relative;
+}
+.post-release .headline{
+    width: 1166px;
+    height: 50px;
+    border:3px solid gray;
+    margin-left: 20px;
+    margin-top: 20px;
+    font-size: 25px;
+}
+.post-release .content{
+    border:3px solid gray;
+    margin-left: 20px;
+    margin-top: 20px;
+    font-size: 20px;
+}
+.post-release .ref-posttype{
+    margin-left: 50px;
+}
+.post-release span{
+    font-size: 20px;
+    margin-left: 1em;
+}
+.post-release .ref-submit{
+    display: block;
+    position: absolute;
+    bottom: 203px;
+    right: 63px;
+    font-size: 25px;
+    border: 3px solid black;
+    padding:5px 10px 5px;
+}

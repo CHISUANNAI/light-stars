@@ -1,0 +1,131 @@
+.container{
+    width: 1240px;
+    margin: 0 auto;
+}
+/* 全部帖子导航栏 */
+.nav{
+    height: 100px;
+    line-height: 100px;
+    position: relative;
+    border-bottom: 3px solid gray;
+    border-top: 1px solid white;
+}
+.nav .title{
+    margin-left: 100px;
+}
+.nav span{
+    font-size: 16px;
+    color: gray;
+}
+/* 搜索 */
+.nav .search{
+    position: relative;
+    width: 500px;
+    height: 100px;
+    margin-left: 100px;
+}
+.nav .search input{
+    width: 500px;
+    height: 30px;
+    border: 2px solid gray;
+    padding-left: 31px;
+}
+.nav .search::before{
+    content: '';
+    width: 18px;
+    height: 18px;
+    position: absolute;
+    top: 41px;
+    left: 2px;
+    background: url('../images/sprites.png') -80px -70px;
+}
+/* 具体帖子列表 */
+.post-list{
+    position: relative;
+}
+.post-list .a-post{
+    margin-left: 100px;
+    margin-right: 100px;
+    padding-top: 1px;
+    text-align: center;
+    box-sizing: border-box;
+    border-bottom: 3px solid gray;
+    border-left: 3px solid gray;
+    border-right: 3px solid gray;
+    padding-bottom: 20px;
+}
+.post-list .a-post .post-head{
+    height: 41px;
+    box-sizing: border-box;
+}
+.post-list .a-post .views{
+    line-height: 40px;
+    width: 100px;
+    color: grey;
+    box-sizing: border-box;
+}
+.post-list .a-post .headline{
+    line-height: 40px;
+}
+.post-list .a-post .post-info{
+    text-align: center;
+    line-height: 40px;
+
+}
+.post-list .post-info span{
+    margin:0px 5px 0px;
+    text-align: center;
+}
+.post-list .post-info span:first-child::before{
+    content: '';
+    display: inline-block;
+    height: 735px;
+    width: 735px;
+    background: url('../images/like.png') -1472px 0px;
+    zoom: 0.029;
+    vertical-align: middle;
+}
+.post-list .a-post .content{
+    text-align: left;
+    box-sizing: border-box;
+    width: 1041px;
+    padding-left: 100px;
+}
+/* 帖子发布 */
+.posting
+{
+    height: 600px;
+    text-align: center;
+    position: relative;
+}
+.posting .headline{
+    width: 1079px;
+    height: 50px;
+    border:3px solid gray;
+    margin-left: 20px;
+    margin-top: 20px;
+    font-size: 25px;
+}
+.posting .content{
+    width: 1079px;
+    border:3px solid gray;
+    margin-left: 20px;
+    margin-top: 20px;
+    font-size: 20px;
+}
+.posting .posttype{
+    margin-left: 68px;
+}
+.posting span{
+    font-size: 20px;
+    margin-left: 1em;
+}
+.posting .submit{
+    display: block;
+    position: absolute;
+    bottom: 203px;
+    right: 63px;
+    font-size: 25px;
+    border: 3px solid black;
+    padding:5px 10px 5px;
+}
