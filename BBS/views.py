@@ -1,4 +1,5 @@
 # import typing_extensions
+from os import umask
 from django.db.models.fields import CommaSeparatedIntegerField
 from django.shortcuts import render
 import json
@@ -9,6 +10,10 @@ from user_apply_data.models import User_thumb_post,User_collect_post
 # Create your views here.
 from django.http import HttpResponse
 import datetime
+
+def open_post(request):
+    posttitle=request.GET.get('posttitle')
+    return render(request,'post-content.html',{"posttitle":json.dumps(posttitle)})
 
 def dispatcher(request):
     # 将请求参数统一放入request 的 params 属性中，方便后续处理
@@ -63,8 +68,8 @@ def list_one_content(request):
     qs = qs.filter(帖子标题=title)
     postcontent = list(qs)
     s=postcontent[0]["用户_id"]
-    s1 =Bbsdata.objects.get(用户_id=s)
-    postcontent[0]["用户_id"]=s1.用户.姓名_组织名
+    s1 =User.objects.get(用户ID=s)
+    postcontent[0]["用户_id"]=s1.姓名_组织名
     #找到帖子的评论有关信息
     cn = Bbsdata.objects.get(帖子标题=title)
     commentlist=Comment_data.objects.filter(帖子标题_id=cn).values()
@@ -72,8 +77,8 @@ def list_one_content(request):
     i=len(commentlist)
     for j in range(i):
         k=commentlist[j]["用户_id"]
-        s1 = Comment_data.objects.get(用户_id=k)
-        commentlist[j]["用户_id"]=s1.用户.姓名_组织名
+        s1 = User.objects.get(用户ID=k)
+        commentlist[j]["用户_id"]=s1.姓名_组织名
 
    # s1 = Comment_data.objects.filter(帖子标题_id=cn)
 

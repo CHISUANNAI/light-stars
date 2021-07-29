@@ -1,0 +1,755 @@
+-- MySQL dump 10.13  Distrib 5.7.34, for Win64 (x86_64)
+--
+-- Host: localhost    Database: xxdd
+-- ------------------------------------------------------
+-- Server version	5.7.34-log
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `发起活动图片表`
+--
+
+DROP TABLE IF EXISTS `发起活动图片表`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `发起活动图片表` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `活动图片` varchar(100) NOT NULL,
+  `url_height` int(10) unsigned NOT NULL,
+  `url_width` int(10) unsigned NOT NULL,
+  `活动_id` varchar(200) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `发起活动图片表_活动_id_活动图片_698d4aeb_uniq` (`活动_id`,`活动图片`),
+  CONSTRAINT `发起活动图片表_活动_id_20ab4f5d_fk_发起活动表_发起活动名称` FOREIGN KEY (`活动_id`) REFERENCES `发起活动表` (`发起活动名称`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `发起活动图片表`
+--
+
+LOCK TABLES `发起活动图片表` WRITE;
+/*!40000 ALTER TABLE `发起活动图片表` DISABLE KEYS */;
+/*!40000 ALTER TABLE `发起活动图片表` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `发起活动表`
+--
+
+DROP TABLE IF EXISTS `发起活动表`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `发起活动表` (
+  `发起活动名称` varchar(200) NOT NULL,
+  `发起活动日期` date DEFAULT NULL,
+  `发起活动地点` varchar(200) DEFAULT NULL,
+  `发起活动简介` longtext,
+  `报名截止日期` date DEFAULT NULL,
+  `组织类用户_id` varchar(8) NOT NULL,
+  PRIMARY KEY (`发起活动名称`),
+  KEY `发起活动表_组织类用户_id_ee15acd7_fk_普通用户_用户ID` (`组织类用户_id`),
+  CONSTRAINT `发起活动表_组织类用户_id_ee15acd7_fk_普通用户_用户ID` FOREIGN KEY (`组织类用户_id`) REFERENCES `普通用户` (`用户ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `发起活动表`
+--
+
+LOCK TABLES `发起活动表` WRITE;
+/*!40000 ALTER TABLE `发起活动表` DISABLE KEYS */;
+/*!40000 ALTER TABLE `发起活动表` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `帖子评论`
+--
+
+DROP TABLE IF EXISTS `帖子评论`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `帖子评论` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `帖子标题_id` varchar(254) NOT NULL,
+  `楼数` int(11) NOT NULL,
+  `评论内容` longtext,
+  `评论时间` datetime(6) DEFAULT NULL,
+  `用户_id` varchar(8) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `帖子评论_帖子标题_楼数_55d45fef_uniq` (`帖子标题_id`,`楼数`),
+  KEY `帖子评论_用户_id_b0c4f3d5_fk_普通用户_用户ID` (`用户_id`),
+  KEY `帖子评论_帖子标题_id_294f6879` (`帖子标题_id`),
+  CONSTRAINT `帖子评论_帖子标题_id_294f6879_fk_BBS数据_帖子标题` FOREIGN KEY (`帖子标题_id`) REFERENCES `bbs数据` (`帖子标题`),
+  CONSTRAINT `帖子评论_用户_id_b0c4f3d5_fk_普通用户_用户ID` FOREIGN KEY (`用户_id`) REFERENCES `普通用户` (`用户ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `帖子评论`
+--
+
+LOCK TABLES `帖子评论` WRITE;
+/*!40000 ALTER TABLE `帖子评论` DISABLE KEYS */;
+INSERT INTO `帖子评论` VALUES (1,'什么是自闭症？',1,'讲的很好！','2020-12-12 20:23:23.000000','r0000001'),(2,'什么是自闭症？',2,'不错，很有收获！','2020-12-12 20:23:23.000000','r0000002'),(3,'自闭症的真相',1,'每个自闭症儿童都是独特的星星，加油！','2021-07-27 15:56:11.380632','r0000002'),(6,'自闭症的真相',2,'每个自闭症儿童都是独特的星星，加油！','2021-07-27 15:57:25.621915','r0000002'),(9,'自闭症的真相',3,'加油！','2021-07-27 15:57:25.621915','r0000002');
+/*!40000 ALTER TABLE `帖子评论` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `患病儿童`
+--
+
+DROP TABLE IF EXISTS `患病儿童`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `患病儿童` (
+  `患病儿童姓名` varchar(20) NOT NULL,
+  `身份证号` varchar(18) DEFAULT NULL,
+  `是否实名认证` tinyint(1) NOT NULL,
+  `年龄` int(11) NOT NULL,
+  `性别` varchar(4) DEFAULT NULL,
+  `是否通过患病认证` tinyint(1) NOT NULL,
+  PRIMARY KEY (`患病儿童姓名`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `患病儿童`
+--
+
+LOCK TABLES `患病儿童` WRITE;
+/*!40000 ALTER TABLE `患病儿童` DISABLE KEYS */;
+/*!40000 ALTER TABLE `患病儿童` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `普通用户`
+--
+
+DROP TABLE IF EXISTS `普通用户`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `普通用户` (
+  `用户ID` varchar(8) NOT NULL,
+  `用户类型` varchar(8) DEFAULT NULL,
+  `姓名_组织名` varchar(20) DEFAULT NULL,
+  `密码` varchar(128) DEFAULT NULL,
+  `身份证号` varchar(18) DEFAULT NULL,
+  `邮箱` varchar(128) DEFAULT NULL,
+  `手机号` varchar(11) DEFAULT NULL,
+  `是否实名认证` tinyint(1) DEFAULT NULL,
+  `家庭年收入` varchar(20) DEFAULT NULL,
+  `是否通过家庭收入认证` tinyint(1) DEFAULT NULL,
+  `居住城市` varchar(20) DEFAULT NULL,
+  `是否通过社会组织认证` tinyint(1) DEFAULT NULL,
+  `组织类型` varchar(5) DEFAULT NULL,
+  `组织描述` varchar(200) DEFAULT NULL,
+  PRIMARY KEY (`用户ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `普通用户`
+--
+
+LOCK TABLES `普通用户` WRITE;
+/*!40000 ALTER TABLE `普通用户` DISABLE KEYS */;
+INSERT INTO `普通用户` VALUES ('r0000001','志愿者','李冰','12345','445757383929284834','8484757@123.com','14359593949',0,NULL,NULL,'上海',NULL,NULL,NULL),('r0000002','志愿者','王华','12345','245757383929284834','8344757@123.com','24359593949',0,NULL,NULL,'上海',NULL,NULL,NULL);
+/*!40000 ALTER TABLE `普通用户` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `活动图片表`
+--
+
+DROP TABLE IF EXISTS `活动图片表`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `活动图片表` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `活动图片` varchar(100) NOT NULL,
+  `url_height` int(10) unsigned NOT NULL,
+  `url_width` int(10) unsigned NOT NULL,
+  `活动_id` varchar(5) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `活动图片表_活动_id_活动图片_b5c150dc_uniq` (`活动_id`,`活动图片`),
+  CONSTRAINT `活动图片表_活动_id_f77105b6_fk_活动表_活动id` FOREIGN KEY (`活动_id`) REFERENCES `活动表` (`活动id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `活动图片表`
+--
+
+LOCK TABLES `活动图片表` WRITE;
+/*!40000 ALTER TABLE `活动图片表` DISABLE KEYS */;
+/*!40000 ALTER TABLE `活动图片表` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `活动报名`
+--
+
+DROP TABLE IF EXISTS `活动报名`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `活动报名` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `发起的活动_id` varchar(200) NOT NULL,
+  `用户_id` varchar(8) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `活动报名_用户_id_发起的活动_id_3301a503_uniq` (`用户_id`,`发起的活动_id`),
+  KEY `活动报名_发起的活动_id_481caeb6_fk_发起活动表_发起活动名称` (`发起的活动_id`),
+  CONSTRAINT `活动报名_发起的活动_id_481caeb6_fk_发起活动表_发起活动名称` FOREIGN KEY (`发起的活动_id`) REFERENCES `发起活动表` (`发起活动名称`),
+  CONSTRAINT `活动报名_用户_id_88b1e83b_fk_普通用户_用户ID` FOREIGN KEY (`用户_id`) REFERENCES `普通用户` (`用户ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `活动报名`
+--
+
+LOCK TABLES `活动报名` WRITE;
+/*!40000 ALTER TABLE `活动报名` DISABLE KEYS */;
+/*!40000 ALTER TABLE `活动报名` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `活动表`
+--
+
+DROP TABLE IF EXISTS `活动表`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `活动表` (
+  `活动id` varchar(5) NOT NULL,
+  `活动标题` varchar(200) NOT NULL,
+  `活动名称` varchar(200) DEFAULT NULL,
+  `活动日期` date DEFAULT NULL,
+  `活动地点` varchar(200) DEFAULT NULL,
+  `社会组织` varchar(200) DEFAULT NULL,
+  `活动简介` longtext,
+  `活动详细介绍` longtext,
+  PRIMARY KEY (`活动id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `活动表`
+--
+
+LOCK TABLES `活动表` WRITE;
+/*!40000 ALTER TABLE `活动表` DISABLE KEYS */;
+/*!40000 ALTER TABLE `活动表` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `用户收藏帖子`
+--
+
+DROP TABLE IF EXISTS `用户收藏帖子`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `用户收藏帖子` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `收藏时间` datetime(6) DEFAULT NULL,
+  `帖子_id` varchar(254) NOT NULL,
+  `用户_id` varchar(8) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `用户收藏帖子_用户_id_帖子_id_a2f4f910_uniq` (`用户_id`,`帖子_id`),
+  KEY `用户收藏帖子_帖子_id_acfadfba_fk_BBS数据_帖子标题` (`帖子_id`),
+  CONSTRAINT `用户收藏帖子_帖子_id_acfadfba_fk_BBS数据_帖子标题` FOREIGN KEY (`帖子_id`) REFERENCES `bbs数据` (`帖子标题`),
+  CONSTRAINT `用户收藏帖子_用户_id_a91cccbd_fk_普通用户_用户ID` FOREIGN KEY (`用户_id`) REFERENCES `普通用户` (`用户ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `用户收藏帖子`
+--
+
+LOCK TABLES `用户收藏帖子` WRITE;
+/*!40000 ALTER TABLE `用户收藏帖子` DISABLE KEYS */;
+INSERT INTO `用户收藏帖子` VALUES (3,'2021-07-27 15:00:14.504677','什么是自闭症？','r0000001');
+/*!40000 ALTER TABLE `用户收藏帖子` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `用户收藏活动`
+--
+
+DROP TABLE IF EXISTS `用户收藏活动`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `用户收藏活动` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `收藏时间` datetime(6) DEFAULT NULL,
+  `活动_id` varchar(5) NOT NULL,
+  `用户_id` varchar(8) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `用户收藏活动_用户_id_活动_id_f49ac5dd_uniq` (`用户_id`,`活动_id`),
+  KEY `用户收藏活动_活动_id_0b34033e_fk_活动表_活动id` (`活动_id`),
+  CONSTRAINT `用户收藏活动_活动_id_0b34033e_fk_活动表_活动id` FOREIGN KEY (`活动_id`) REFERENCES `活动表` (`活动id`),
+  CONSTRAINT `用户收藏活动_用户_id_bcd24e41_fk_普通用户_用户ID` FOREIGN KEY (`用户_id`) REFERENCES `普通用户` (`用户ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `用户收藏活动`
+--
+
+LOCK TABLES `用户收藏活动` WRITE;
+/*!40000 ALTER TABLE `用户收藏活动` DISABLE KEYS */;
+/*!40000 ALTER TABLE `用户收藏活动` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `用户点赞帖子`
+--
+
+DROP TABLE IF EXISTS `用户点赞帖子`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `用户点赞帖子` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `点赞时间` datetime(6) DEFAULT NULL,
+  `帖子_id` varchar(254) NOT NULL,
+  `用户_id` varchar(8) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `用户点赞帖子_用户_id_帖子_id_c6b1d4d7_uniq` (`用户_id`,`帖子_id`),
+  KEY `用户点赞帖子_帖子_id_4874360a_fk_BBS数据_帖子标题` (`帖子_id`),
+  CONSTRAINT `用户点赞帖子_帖子_id_4874360a_fk_BBS数据_帖子标题` FOREIGN KEY (`帖子_id`) REFERENCES `bbs数据` (`帖子标题`),
+  CONSTRAINT `用户点赞帖子_用户_id_0bd98586_fk_普通用户_用户ID` FOREIGN KEY (`用户_id`) REFERENCES `普通用户` (`用户ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=77 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `用户点赞帖子`
+--
+
+LOCK TABLES `用户点赞帖子` WRITE;
+/*!40000 ALTER TABLE `用户点赞帖子` DISABLE KEYS */;
+INSERT INTO `用户点赞帖子` VALUES (76,'2021-07-27 14:29:47.423054','什么是自闭症？','r0000001');
+/*!40000 ALTER TABLE `用户点赞帖子` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `用户点赞活动`
+--
+
+DROP TABLE IF EXISTS `用户点赞活动`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `用户点赞活动` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `点赞时间` datetime(6) DEFAULT NULL,
+  `活动_id` varchar(5) NOT NULL,
+  `用户_id` varchar(8) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `用户点赞活动_用户_id_活动_id_8b30cb89_uniq` (`用户_id`,`活动_id`),
+  KEY `用户点赞活动_活动_id_14496dda_fk_活动表_活动id` (`活动_id`),
+  CONSTRAINT `用户点赞活动_活动_id_14496dda_fk_活动表_活动id` FOREIGN KEY (`活动_id`) REFERENCES `活动表` (`活动id`),
+  CONSTRAINT `用户点赞活动_用户_id_715de79b_fk_普通用户_用户ID` FOREIGN KEY (`用户_id`) REFERENCES `普通用户` (`用户ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `用户点赞活动`
+--
+
+LOCK TABLES `用户点赞活动` WRITE;
+/*!40000 ALTER TABLE `用户点赞活动` DISABLE KEYS */;
+/*!40000 ALTER TABLE `用户点赞活动` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `监护人_患儿`
+--
+
+DROP TABLE IF EXISTS `监护人_患儿`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `监护人_患儿` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `患病儿童_id` varchar(20) NOT NULL,
+  `用户_id` varchar(8) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `监护人_患儿_用户_id_患病儿童_id_dfa08af1_uniq` (`用户_id`,`患病儿童_id`),
+  KEY `监护人_患儿_患病儿童_id_ed9f6429_fk_患病儿童_患病儿童姓名` (`患病儿童_id`),
+  CONSTRAINT `监护人_患儿_患病儿童_id_ed9f6429_fk_患病儿童_患病儿童姓名` FOREIGN KEY (`患病儿童_id`) REFERENCES `患病儿童` (`患病儿童姓名`),
+  CONSTRAINT `监护人_患儿_用户_id_7ebc6dff_fk_普通用户_用户ID` FOREIGN KEY (`用户_id`) REFERENCES `普通用户` (`用户ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `监护人_患儿`
+--
+
+LOCK TABLES `监护人_患儿` WRITE;
+/*!40000 ALTER TABLE `监护人_患儿` DISABLE KEYS */;
+/*!40000 ALTER TABLE `监护人_患儿` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `评论回复`
+--
+
+DROP TABLE IF EXISTS `评论回复`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `评论回复` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `评论号` int(11) DEFAULT NULL,
+  `评论内容` longtext,
+  `评论时间` datetime(6) DEFAULT NULL,
+  `回复的评论_id` bigint(20) NOT NULL,
+  `用户_id` varchar(8) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `评论回复_回复的评论_id_评论号_b4bdc228_uniq` (`回复的评论_id`,`评论号`),
+  KEY `评论回复_用户_id_8442abf2_fk_普通用户_用户ID` (`用户_id`),
+  CONSTRAINT `评论回复_回复的评论_id_8f4b04e3_fk_帖子评论_id` FOREIGN KEY (`回复的评论_id`) REFERENCES `帖子评论` (`id`),
+  CONSTRAINT `评论回复_用户_id_8442abf2_fk_普通用户_用户ID` FOREIGN KEY (`用户_id`) REFERENCES `普通用户` (`用户ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `评论回复`
+--
+
+LOCK TABLES `评论回复` WRITE;
+/*!40000 ALTER TABLE `评论回复` DISABLE KEYS */;
+INSERT INTO `评论回复` VALUES (1,1,'还可以哦','2020-02-22 05:43:43.000000',1,'r0000002'),(3,2,'感谢','2020-02-22 05:43:43.000000',3,'r0000002'),(4,3,'非常感谢！','2021-07-27 16:41:53.278250',3,'r0000002');
+/*!40000 ALTER TABLE `评论回复` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `auth_group`
+--
+
+DROP TABLE IF EXISTS `auth_group`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `auth_group` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(150) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `name` (`name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `auth_group`
+--
+
+LOCK TABLES `auth_group` WRITE;
+/*!40000 ALTER TABLE `auth_group` DISABLE KEYS */;
+/*!40000 ALTER TABLE `auth_group` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `auth_group_permissions`
+--
+
+DROP TABLE IF EXISTS `auth_group_permissions`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `auth_group_permissions` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `group_id` int(11) NOT NULL,
+  `permission_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `auth_group_permissions_group_id_permission_id_0cd325b0_uniq` (`group_id`,`permission_id`),
+  KEY `auth_group_permissio_permission_id_84c5c92e_fk_auth_perm` (`permission_id`),
+  CONSTRAINT `auth_group_permissio_permission_id_84c5c92e_fk_auth_perm` FOREIGN KEY (`permission_id`) REFERENCES `auth_permission` (`id`),
+  CONSTRAINT `auth_group_permissions_group_id_b120cbf9_fk_auth_group_id` FOREIGN KEY (`group_id`) REFERENCES `auth_group` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `auth_group_permissions`
+--
+
+LOCK TABLES `auth_group_permissions` WRITE;
+/*!40000 ALTER TABLE `auth_group_permissions` DISABLE KEYS */;
+/*!40000 ALTER TABLE `auth_group_permissions` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `auth_permission`
+--
+
+DROP TABLE IF EXISTS `auth_permission`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `auth_permission` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `content_type_id` int(11) NOT NULL,
+  `codename` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `auth_permission_content_type_id_codename_01ab375a_uniq` (`content_type_id`,`codename`),
+  CONSTRAINT `auth_permission_content_type_id_2f476e4b_fk_django_co` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `auth_permission`
+--
+
+LOCK TABLES `auth_permission` WRITE;
+/*!40000 ALTER TABLE `auth_permission` DISABLE KEYS */;
+INSERT INTO `auth_permission` VALUES (1,'Can add log entry',1,'add_logentry'),(2,'Can change log entry',1,'change_logentry'),(3,'Can delete log entry',1,'delete_logentry'),(4,'Can view log entry',1,'view_logentry'),(5,'Can add permission',2,'add_permission'),(6,'Can change permission',2,'change_permission'),(7,'Can delete permission',2,'delete_permission'),(8,'Can view permission',2,'view_permission'),(9,'Can add group',3,'add_group'),(10,'Can change group',3,'change_group'),(11,'Can delete group',3,'delete_group'),(12,'Can view group',3,'view_group'),(13,'Can add user',4,'add_user'),(14,'Can change user',4,'change_user'),(15,'Can delete user',4,'delete_user'),(16,'Can view user',4,'view_user'),(17,'Can add content type',5,'add_contenttype'),(18,'Can change content type',5,'change_contenttype'),(19,'Can delete content type',5,'delete_contenttype'),(20,'Can view content type',5,'view_contenttype'),(21,'Can add session',6,'add_session'),(22,'Can change session',6,'change_session'),(23,'Can delete session',6,'delete_session'),(24,'Can view session',6,'view_session'),(25,'Can add activity',7,'add_activity'),(26,'Can change activity',7,'change_activity'),(27,'Can delete activity',7,'delete_activity'),(28,'Can view activity',7,'view_activity'),(29,'Can add set activity',8,'add_setactivity'),(30,'Can change set activity',8,'change_setactivity'),(31,'Can delete set activity',8,'delete_setactivity'),(32,'Can view set activity',8,'view_setactivity'),(33,'Can add set activity picture',9,'add_setactivitypicture'),(34,'Can change set activity picture',9,'change_setactivitypicture'),(35,'Can delete set activity picture',9,'delete_setactivitypicture'),(36,'Can view set activity picture',9,'view_setactivitypicture'),(37,'Can add activity picture',10,'add_activitypicture'),(38,'Can change activity picture',10,'change_activitypicture'),(39,'Can delete activity picture',10,'delete_activitypicture'),(40,'Can view activity picture',10,'view_activitypicture'),(41,'Can add user_thumb_post',11,'add_user_thumb_post'),(42,'Can change user_thumb_post',11,'change_user_thumb_post'),(43,'Can delete user_thumb_post',11,'delete_user_thumb_post'),(44,'Can view user_thumb_post',11,'view_user_thumb_post'),(45,'Can add user_thumb_activity',12,'add_user_thumb_activity'),(46,'Can change user_thumb_activity',12,'change_user_thumb_activity'),(47,'Can delete user_thumb_activity',12,'delete_user_thumb_activity'),(48,'Can view user_thumb_activity',12,'view_user_thumb_activity'),(49,'Can add user_collect_post',13,'add_user_collect_post'),(50,'Can change user_collect_post',13,'change_user_collect_post'),(51,'Can delete user_collect_post',13,'delete_user_collect_post'),(52,'Can view user_collect_post',13,'view_user_collect_post'),(53,'Can add user_collect_activity',14,'add_user_collect_activity'),(54,'Can change user_collect_activity',14,'change_user_collect_activity'),(55,'Can delete user_collect_activity',14,'delete_user_collect_activity'),(56,'Can view user_collect_activity',14,'view_user_collect_activity'),(57,'Can add activity_registration',15,'add_activity_registration'),(58,'Can change activity_registration',15,'change_activity_registration'),(59,'Can delete activity_registration',15,'delete_activity_registration'),(60,'Can view activity_registration',15,'view_activity_registration');
+/*!40000 ALTER TABLE `auth_permission` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `auth_user`
+--
+
+DROP TABLE IF EXISTS `auth_user`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `auth_user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `password` varchar(128) NOT NULL,
+  `last_login` datetime(6) DEFAULT NULL,
+  `is_superuser` tinyint(1) NOT NULL,
+  `username` varchar(150) NOT NULL,
+  `first_name` varchar(150) NOT NULL,
+  `last_name` varchar(150) NOT NULL,
+  `email` varchar(254) NOT NULL,
+  `is_staff` tinyint(1) NOT NULL,
+  `is_active` tinyint(1) NOT NULL,
+  `date_joined` datetime(6) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `username` (`username`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `auth_user`
+--
+
+LOCK TABLES `auth_user` WRITE;
+/*!40000 ALTER TABLE `auth_user` DISABLE KEYS */;
+/*!40000 ALTER TABLE `auth_user` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `auth_user_groups`
+--
+
+DROP TABLE IF EXISTS `auth_user_groups`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `auth_user_groups` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `group_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `auth_user_groups_user_id_group_id_94350c0c_uniq` (`user_id`,`group_id`),
+  KEY `auth_user_groups_group_id_97559544_fk_auth_group_id` (`group_id`),
+  CONSTRAINT `auth_user_groups_group_id_97559544_fk_auth_group_id` FOREIGN KEY (`group_id`) REFERENCES `auth_group` (`id`),
+  CONSTRAINT `auth_user_groups_user_id_6a12ed8b_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `auth_user_groups`
+--
+
+LOCK TABLES `auth_user_groups` WRITE;
+/*!40000 ALTER TABLE `auth_user_groups` DISABLE KEYS */;
+/*!40000 ALTER TABLE `auth_user_groups` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `auth_user_user_permissions`
+--
+
+DROP TABLE IF EXISTS `auth_user_user_permissions`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `auth_user_user_permissions` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `permission_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `auth_user_user_permissions_user_id_permission_id_14a6b632_uniq` (`user_id`,`permission_id`),
+  KEY `auth_user_user_permi_permission_id_1fbb5f2c_fk_auth_perm` (`permission_id`),
+  CONSTRAINT `auth_user_user_permi_permission_id_1fbb5f2c_fk_auth_perm` FOREIGN KEY (`permission_id`) REFERENCES `auth_permission` (`id`),
+  CONSTRAINT `auth_user_user_permissions_user_id_a95ead1b_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `auth_user_user_permissions`
+--
+
+LOCK TABLES `auth_user_user_permissions` WRITE;
+/*!40000 ALTER TABLE `auth_user_user_permissions` DISABLE KEYS */;
+/*!40000 ALTER TABLE `auth_user_user_permissions` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `bbs数据`
+--
+
+DROP TABLE IF EXISTS `bbs数据`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `bbs数据` (
+  `帖子标题` varchar(254) NOT NULL,
+  `帖子内容` longtext,
+  `发帖时间` datetime(6) DEFAULT NULL,
+  `论坛分区` varchar(88) DEFAULT NULL,
+  `点赞数` int(11) NOT NULL,
+  `收藏数` int(11) NOT NULL,
+  `浏览次数` int(11) NOT NULL,
+  `是否审核通过` tinyint(1) NOT NULL,
+  `用户_id` varchar(8) NOT NULL,
+  PRIMARY KEY (`帖子标题`),
+  KEY `BBS数据_用户_id_7bd7eea6_fk_普通用户_用户ID` (`用户_id`),
+  CONSTRAINT `BBS数据_用户_id_7bd7eea6_fk_普通用户_用户ID` FOREIGN KEY (`用户_id`) REFERENCES `普通用户` (`用户ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `bbs数据`
+--
+
+LOCK TABLES `bbs数据` WRITE;
+/*!40000 ALTER TABLE `bbs数据` DISABLE KEYS */;
+INSERT INTO `bbs数据` VALUES ('2岁自闭症的前兆是什么？','自闭症可谓是让宝妈们谈虎色变的疾病，因为这种疾病没有良好的治疗方法，会影响到宝宝的后半生。因此每一个宝妈都是很害怕这种疾病找上门的，那就要对自闭症多了解一些，那2岁自闭症的前兆是什么？\n\n　　1.交流异常\n　　如果宝宝有自闭症的倾向，那交流能力就会出现异常。心理健康的宝宝，在面对宝妈的时候，总是积极热情的，很愿意跟宝妈交流。但是自闭症的宝宝则是另一种态度，根本不理会宝妈，对宝妈的热情也视而不见。面对外人的时候，也是一样的态度，不关心周围的一切，只沉浸在自己的小世界中。\n\n　　2.情绪异常\n健康的宝宝情绪是很稳定的，即便心情不好也会用哭的方式表达，或者是跟宝妈诉说自己的不开心。但是自闭症的宝宝就不一样了，心情不好的时候会大声的吼叫，而且是嘶吼的状态。明眼的宝妈一眼就能分辨出来，宝宝的情绪跟健康宝宝的情绪是有差异的。\n\n　　3.暴力倾向\n　　存在自闭症倾向的宝宝，在处理事情的时候，经常会用暴力的方式解决。不只是对身边的人存在暴力倾向，还会对自己施加暴力。（文章仅供参考）\n','2021-07-31 00:10:02.000000','科普贴',0,0,0,0,'r0000002'),('什么是自闭症？','1.自闭症的基本症状（DSM-V参照）：对人相互反应与交流的明显异常（不分享情绪，兴趣；缺少非语言交流如眼神，面部表情；想象游戏（pretendplay）的缺失。行为／兴趣的特定・反复的用户ID用户ID行为模式。对于会话，身体运动，习惯会有［反复］的明显倾向；对于［感觉刺激］过于敏感或过于迟钝。Ps. 自闭症为谱系障碍，症状特征，症状程度等各有不同。2.我们应该如何看待［自闭症］？－关于学术界的种种－自1943年kanner报告了第一份自闭症症例以来，学术界对于自闭症的看法一直在不断变化。Kanner认为自闭症的本质为“一，主要症状存在与［社会与情绪面］二，是由生物学器质性变化产生。”Kanner之后，［心因性与后天性］开始被视作重要的因素，比如父母的性格，不合适的养育环境，否定的（悲观的，不积极的）情绪反应等。1970年以后，以Rutter为代表，强调“一，自闭症为先天疾病；二，其本质非社会性障碍，而是认知能力与语言能力的障碍。”也就是说，Rutter认为自闭症是语言，认知能力障碍所引起的［二次障碍］“。对于Rutter的说法，因其一，社会性障碍不一定是语言，认知障碍的派生物；二，自闭症在对待［物体］时没有认知障碍，但当对方为［人］时会出现认知障碍；三，认知，语言障碍尽管得到改善，［对人障碍］仍根深蒂固的例子不在少数而被质疑。——目前被广泛讨论&接受的解释：（1）［对人障碍说］。它解释自闭症的本质在于［对人领域］，是一种［社会性匮乏］的症状。根据心的理论（ToM）——人们在处理人脸，人声，情绪与物体信息时，通过解构／加工的方式理解他人与外界。另一方面，我们对于肉眼看不见的［心］会采取截然不同的理解装置，强调自闭症“不理解他人在想些什么”，“不能设身处地地想问题”是因为［对于理解人心的特别装置］出了问题。（2）［共同注意力的障碍／非语言交流的障碍］：具体症状比如：无法理解［手指指向（pointing）］的意义，从而无法理解自我与他人的二者关系，无法理解自我与他人，与物体的三者关系。3. 对于“自闭症不是病，请关爱社会多样性”热潮的起因及一点看法正如第二段列举的无数解释［自闭症是什么类型的障碍］一样，对于自闭症的研究热潮大多把目光放在自闭症儿如何与［正常儿］不同，从而想办法消除自闭症的［特别症状］。很多自闭症者开始站出来讲述自己的看法，强调自闭症的特别，不需要［被消灭］（详情参见TED ：Rosie King: How autism freed me to be myself  &  Alix Generous:How I learned to communicate my inner life with Asperger\'s）。此间生出了许多世间对于“关爱社会多样性”的过度解读，即自闭症不需要干预治疗，而改变大众对于自闭症的看法才是必须等舆论。对此，有两点需要申明强调：（1）［早期支援的重要性］：科学已经证明人脑在还未发展成熟的初期阶段，可以通过外界环境刺激产生变化。尽管自闭症先天具有［社会性障碍］，但可以通过早期的外界治疗得到缓解。（2）［二次障碍／并发症］：自闭症通常与智力低下，注意力障碍，抑郁等一系列是并发症。早期的支援指导不仅可以改善［一次障碍］，也可以防止或延缓［二次障碍］的产生。→也就是说，自闭症作为一个持续存在的［连续体］，极可能会在得不到治疗&支援的状态下引发一系列并发症，在相当程度上影响自闭症儿［今后在社会上的生存］，并降低其［生活水平］。同时，自闭症通常连带家庭，其父母出现情绪低落（depression）等心理问题也不少见。而基于科学实证之上的早期支援，会科学系统地帮助自闭症儿及其家庭所出现的／未出现的以上问题。','2021-07-25 00:00:02.000000','科普贴',99,2,61,0,'r0000001'),('自闭症的真相','自闭症让TA变得独一无二。\n自闭症并不是TA的全部特性，更不是简单的拼凑相加。——Becca Blanks-Ratliff\n自闭症使我受益匪浅，让我知道作为女人、作为母亲，自己到底能有多强大。\n自闭症并不会使我的孩子低人一等。——AmandaNelson-Van Wagenen\n自闭症是行为障碍的一种，它会影响参与社会交往、进行社会交流的能力。\n自闭症与智力迟钝是两码事。——“孤独者说”的环境研究主管Alycia Halladay博士\n自闭症就像是有感染力的笑声，它使人能感觉一切，只是摆出困惑的表情。\n自闭症并不会使人孤立无援、变得迟钝或成为你所担心的样子。——Denise Henry','2021-07-27 15:30:02.382168','交流贴',0,0,0,0,'r0000002');
+/*!40000 ALTER TABLE `bbs数据` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `django_admin_log`
+--
+
+DROP TABLE IF EXISTS `django_admin_log`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `django_admin_log` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `action_time` datetime(6) NOT NULL,
+  `object_id` longtext,
+  `object_repr` varchar(200) NOT NULL,
+  `action_flag` smallint(5) unsigned NOT NULL,
+  `change_message` longtext NOT NULL,
+  `content_type_id` int(11) DEFAULT NULL,
+  `user_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `django_admin_log_content_type_id_c4bce8eb_fk_django_co` (`content_type_id`),
+  KEY `django_admin_log_user_id_c564eba6_fk_auth_user_id` (`user_id`),
+  CONSTRAINT `django_admin_log_content_type_id_c4bce8eb_fk_django_co` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`),
+  CONSTRAINT `django_admin_log_user_id_c564eba6_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `django_admin_log`
+--
+
+LOCK TABLES `django_admin_log` WRITE;
+/*!40000 ALTER TABLE `django_admin_log` DISABLE KEYS */;
+/*!40000 ALTER TABLE `django_admin_log` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `django_content_type`
+--
+
+DROP TABLE IF EXISTS `django_content_type`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `django_content_type` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `app_label` varchar(100) NOT NULL,
+  `model` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `django_content_type_app_label_model_76bd3d3b_uniq` (`app_label`,`model`)
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `django_content_type`
+--
+
+LOCK TABLES `django_content_type` WRITE;
+/*!40000 ALTER TABLE `django_content_type` DISABLE KEYS */;
+INSERT INTO `django_content_type` VALUES (7,'Activity','activity'),(10,'Activity','activitypicture'),(8,'Activity','setactivity'),(9,'Activity','setactivitypicture'),(1,'admin','logentry'),(3,'auth','group'),(2,'auth','permission'),(4,'auth','user'),(5,'contenttypes','contenttype'),(6,'sessions','session'),(15,'user_apply_data','activity_registration'),(14,'user_apply_data','user_collect_activity'),(13,'user_apply_data','user_collect_post'),(12,'user_apply_data','user_thumb_activity'),(11,'user_apply_data','user_thumb_post');
+/*!40000 ALTER TABLE `django_content_type` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `django_migrations`
+--
+
+DROP TABLE IF EXISTS `django_migrations`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `django_migrations` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `app` varchar(255) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `applied` datetime(6) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `django_migrations`
+--
+
+LOCK TABLES `django_migrations` WRITE;
+/*!40000 ALTER TABLE `django_migrations` DISABLE KEYS */;
+INSERT INTO `django_migrations` VALUES (1,'user_data','0001_initial','2021-07-26 07:20:51.129064'),(2,'Activity','0001_initial','2021-07-26 07:20:51.374200'),(3,'BBS','0001_initial','2021-07-26 07:20:51.623174'),(4,'BBS','0002_alter_comment_data_帖子标题','2021-07-26 07:20:51.690928'),(5,'contenttypes','0001_initial','2021-07-26 07:20:51.730326'),(6,'auth','0001_initial','2021-07-26 07:20:52.201891'),(7,'admin','0001_initial','2021-07-26 07:20:52.304447'),(8,'admin','0002_logentry_remove_auto_add','2021-07-26 07:20:52.316937'),(9,'admin','0003_logentry_add_action_flag_choices','2021-07-26 07:20:52.326910'),(10,'contenttypes','0002_remove_content_type_name','2021-07-26 07:20:52.404632'),(11,'auth','0002_alter_permission_name_max_length','2021-07-26 07:20:52.452047'),(12,'auth','0003_alter_user_email_max_length','2021-07-26 07:20:52.498145'),(13,'auth','0004_alter_user_username_opts','2021-07-26 07:20:52.512110'),(14,'auth','0005_alter_user_last_login_null','2021-07-26 07:20:52.547023'),(15,'auth','0006_require_contenttypes_0002','2021-07-26 07:20:52.553825'),(16,'auth','0007_alter_validators_add_error_messages','2021-07-26 07:20:52.563855'),(17,'auth','0008_alter_user_username_max_length','2021-07-26 07:20:52.610265'),(18,'auth','0009_alter_user_last_name_max_length','2021-07-26 07:20:52.655184'),(19,'auth','0010_alter_group_name_max_length','2021-07-26 07:20:52.699804'),(20,'auth','0011_update_proxy_permissions','2021-07-26 07:20:52.716581'),(21,'auth','0012_alter_user_first_name_max_length','2021-07-26 07:20:52.758832'),(22,'sessions','0001_initial','2021-07-26 07:20:52.795418'),(23,'user_apply_data','0001_initial','2021-07-26 07:20:53.397569');
+/*!40000 ALTER TABLE `django_migrations` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `django_session`
+--
+
+DROP TABLE IF EXISTS `django_session`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `django_session` (
+  `session_key` varchar(40) NOT NULL,
+  `session_data` longtext NOT NULL,
+  `expire_date` datetime(6) NOT NULL,
+  PRIMARY KEY (`session_key`),
+  KEY `django_session_expire_date_a5c62663` (`expire_date`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `django_session`
+--
+
+LOCK TABLES `django_session` WRITE;
+/*!40000 ALTER TABLE `django_session` DISABLE KEYS */;
+/*!40000 ALTER TABLE `django_session` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2021-07-29 13:10:50

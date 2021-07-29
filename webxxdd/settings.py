@@ -16,6 +16,7 @@ from pathlib import Path
 import Activity.apps
 import user_apply_data.apps
 import user_data.apps
+import os
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -60,7 +61,7 @@ ROOT_URLCONF = 'webxxdd.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'light stars pc-client')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
