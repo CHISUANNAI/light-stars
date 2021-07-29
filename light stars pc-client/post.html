@@ -11,10 +11,10 @@
   <link rel="stylesheet" href="./css/base.css">
   <link rel="stylesheet" href="./css/post.css">
   <link rel="stylesheet" href="./css/head.css">
-   <!-- 开发环境版本，包含了有帮助的命令行警告 -->
-   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-   <!-- 官网提供的 axios 在线地址 -->
-   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <!-- 官网提供的 axios 在线地址 -->
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 
 <body>
@@ -88,41 +88,46 @@
           $("#交流4").text((JSON.stringify(data.retlist[3].帖子标题).replace("\"", "")).replace("\"", ""));
       }
     })
+    function getthepost() {
 
-
-
-
+      var name = document.getElementById("科普1").innerText;
+      //window.location.href="/BBS/open_post?posttitle="+encodeURIComponent(name);
+      window.location.href = encodeURI("/BBS/open_post?posttitle=" + (name));
+    }
   </script>
-   <!-- 头部 -->
-   <header id="head">
+  <!-- 头部 -->
+  <header id="head">
     <!-- 快捷菜单  -->
     <div class="post-shortcut">
-        <nav class="container">
-          <div class="logo fl">
-          </div>
-            <ul class="left fl">
-                <li><a href="#">活动</a></li>
-                <li>|<a href="./post.html">论坛</a></li>
-                <li>|<a href="#">义卖</a></li>
-            </ul>
-            <ul class="right fr">
-                <li v-if="isLoad" @click="load"><a href="#">未登录</a>|</li>
-                <li v-if="!isLoad"><a href="#"><div class="ava"><img src="./uploads/ava.jpg" alt="" @mouseover="cardLoad" :class="!cardShow?'small':'big'"></div></a><span>吃果冻</span>|</li>
-                <li v-if="!isLoad" @click="load"><a href="#">退出登录</a>|</li>
-                <li v-if="!isLoad"><a href="#">个人主页</a>|</li>
-                <li><a href="#">客服</a></li>
-            </ul>
-        </nav>
-    </div>
-    <div class="card"  v-if="cardShow" @mouseleave="cardLoad">
-        <ul>
-            <li>监护人</li>
-            <li><a href="#">收到的消息</a></li>
-            <li><a href="#">收到的回复</a></li>
-            <li><a href="#">待办的活动</a></li>
+      <nav class="container">
+        <div class="logo fl">
+        </div>
+        <ul class="left fl">
+          <li><a href="#">活动</a></li>
+          <li>|<a href="./post.html">论坛</a></li>
+          <li>|<a href="#">义卖</a></li>
         </ul>
+        <ul class="right fr">
+          <li v-if="isLoad" @click="load"><a href="#">未登录</a>|</li>
+          <li v-if="!isLoad"><a href="#">
+              <div class="ava"><img src="./uploads/ava.jpg" alt="" @mouseover="cardLoad"
+                  :class="!cardShow?'small':'big'"></div>
+            </a><span>吃果冻</span>|</li>
+          <li v-if="!isLoad" @click="load"><a href="#">退出登录</a>|</li>
+          <li v-if="!isLoad"><a href="#">个人主页</a>|</li>
+          <li><a href="#">客服</a></li>
+        </ul>
+      </nav>
     </div>
-</header>
+    <div class="card" v-if="cardShow" @mouseleave="cardLoad">
+      <ul>
+        <li>监护人</li>
+        <li><a href="#">收到的消息</a></li>
+        <li><a href="#">收到的回复</a></li>
+        <li><a href="#">待办的活动</a></li>
+      </ul>
+    </div>
+  </header>
   <nav class="post-nav container">
     <!-- logo -->
     <h1 class="p-logo fl"><a href="#"></a></h1>
@@ -277,7 +282,7 @@
       </li>
     </ul>
   </div>
-  <!-- <div class="post-page container">
+ <!-- <div class="post-page container">
     <ul>        
         <li><a href="#"></a></li>
         <li><a href="#">1</a></li>

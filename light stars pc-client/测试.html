@@ -10,19 +10,6 @@
 <meta http-equiv="description" content="This is my page">
 <script src="../js/jquery-3.5.1.min.js"></script>
  <script type="text/javascript">
-function add()
-{
-            $.ajax({  
-            type: "post",
-            data:JSON.stringify({action:"list_floor_reply",title:"自闭症的真相",floor:1}),
-            url:"../BBS/comment",
-            dataType:"json",
-            success: function(data){ 
-            $("#json").text(JSON.stringify(data)); 
-            } 
-        }) 
-
-}
 </script> 
 
 </head>
@@ -31,7 +18,7 @@ function add()
 <div id="json">
     this is my jsp
     <p>
-    <button id="ww" onclick="add()">Try it</button>
+    <a href="/BBS/open_post">自闭症的真相</a>  
     </p>
     </div>
 </body>
